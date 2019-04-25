@@ -1,20 +1,26 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-File: manual_input.py
-Author: AleNriG
-Email: agorokhov94@gmail.com
-Github: https://github.com/alenrig
-Description:
-"""
-from modules import decorators
+import functools
 
 
-@decorators.repeat_if_exception
+def repeat_if_exception(function):
+
+    @functools.wraps(function)
+    def inner(*args, **kwargs):
+        try:
+            return function(*args, **kwargs)
+        except Exception as e:
+            print(f"{e}")
+            return inner(*args, **kwargs)
+
+    return inner
+
+
+@repeat_if_exception
 def read_float(message=""):
     return float(input(message))
 
 
-@decorators.repeat_if_exception
+@repeat_if_exception
 def read_eval(message=""):
     return eval(input(message))
