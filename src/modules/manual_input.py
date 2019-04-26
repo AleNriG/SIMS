@@ -17,10 +17,10 @@ def repeat_if_exception(function):
 
 
 @repeat_if_exception
-def read_float(message=""):
+def read_float(message: str = "") -> float:
     return float(input(message))
 
 
 @repeat_if_exception
-def read_eval(message=""):
+def read_eval(message: str = "") -> float:
     return eval(input(message))

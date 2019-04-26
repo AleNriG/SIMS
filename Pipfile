@@ -9,6 +9,7 @@ black = "==19.3b0"
 pycodestyle = "*"
 pytest = "*"
 pre-commit = "*"
+mypy = "*"
 
 [packages]
 numpy = "==1.15.4"
