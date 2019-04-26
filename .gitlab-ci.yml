@@ -6,11 +6,12 @@ variables:
 cache:
   paths:
     - .cache/pip
-    - venv/
+    - .venv/
 
 before_script:
   - python -V # Print out python version for debugging
   - pip install pipenv
+  - pipenv shell
   - pipenv install --dev
 
 test:
