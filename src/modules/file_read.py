@@ -7,11 +7,12 @@ Email: agorokhov94@gmail.com
 Github: https://github.com/alenrig
 Description:
 """
-import modules.data
+from typing import List, Tuple
+from modules import data
 import pandas as pd
 
 
-def asc(filename: str):
+def asc(filename: str) -> data.Data:
     """Reader for raw data from CAMECA IMS-7f
 
     :filename: TODO
@@ -23,14 +24,14 @@ def asc(filename: str):
         for line in file.read().splitlines():
             raw_data.append(line)
     name = _find_file_name(raw_data)
-    header, points = _cut_header_and_points(raw_data)
-    header = _reshape_ion_string(header)
-    points = _reshape_points(points)
+    bad_header, bad_points = _cut_header_and_points(raw_data)
+    header = _reshape_ion_string(bad_header)
+    points = _reshape_points(bad_points)
     points = pd.DataFrame(points, columns=header)
-    return modules.data.Data(name=name, points=points)
+    return data.Data(name=name, points=points)
 
 
-def _find_file_name(raw_data):
+def _find_file_name(raw_data: List[str]) -> str:
     """TODO: Docstring for _find_file_name.
 
     :raw_text: TODO
@@ -42,7 +43,7 @@ def _find_file_name(raw_data):
     return name.split(".")[0]
 
 
-def _cut_header_and_points(raw_data):
+def _cut_header_and_points(raw_data: List[str]) -> Tuple[str, List[str]]:
     """TODO: Docstring for _cut_points.
 
     :raw_data: TODO
@@ -56,19 +57,19 @@ def _cut_header_and_points(raw_data):
     return header, points
 
 
-def _reshape_ion_string(header):
+def _reshape_ion_string(bad_header: str) -> List[str]:
     """TODO: Docstring for _parse_ion_names.
 
     :header: TODO
     :returns: TODO
 
     """
-    header = [ion.replace(" ", "") for ion in filter(None, header.split("\t"))]
+    header = [ion.replace(" ", "") for ion in filter(None, bad_header.split("\t"))]
     header.insert(0, "Time")
     return header
 
 
-def _reshape_points(points):
+def _reshape_points(points: List[str]) -> List[List[float]]:
     """TODO: Docstring for _reshape_points.
 
     :points: TODO
