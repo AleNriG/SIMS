@@ -35,17 +35,25 @@ class Main(cmd2.Cmd):
         """Calculate RSF"""
         dose = manual_input.read_float(message="Input dose: ")
         integer = manual_input.read_float(message="Input integration result: ")
-        result = minor.rsf(dose=dose, integer=integer)
-        print(f"result = {result}")
+        try:
+            result = minor.rsf(dose=dose, integer=integer)
+            print(f"result = {result:.2e}")
+        except Exception as e:
+            print(f"{e}")
 
     def do_HMR(self, _):
         """Calculate HMR"""
-        mass_1 = manual_input.read_eval(message="Input expression for the first mass: ")
+        mass_1 = manual_input.read_eval(
+            message="Input expression for the first mass: "
+        )
         mass_2 = manual_input.read_eval(
             message="Input expression for the second mass: "
         )
-        result = minor.hmr(mass_1, mass_2)
-        print(f"result = {result}")
+        try:
+            result = minor.hmr(mass_1, mass_2)
+            print(f"result = {result}")
+        except Exception as e:
+            print(f"{e}")
 
     @cmd2.with_argument_list
     def do_read(self, args):
