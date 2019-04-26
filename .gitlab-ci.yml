@@ -9,8 +9,8 @@ cache:
     - .venv
 
 before_script:
-  - python -V # Print out python version for debugging
-  - pip install pipenv
+  - python3 -V # Print out python version for debugging
+  - pip3 install pipenv
   - pipenv install --dev
   - pipenv shell
 
