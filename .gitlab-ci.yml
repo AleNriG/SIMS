@@ -12,8 +12,7 @@ before_script:
   - python3 -V # Print out python version for debugging
   - pip3 install pipenv
   - pipenv install --dev
-  - pipenv shell
 
 test:
   script:
-  - pytest
+  - pipenv run pytest
