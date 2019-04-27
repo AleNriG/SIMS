@@ -19,6 +19,6 @@ class Data:
 
     def __str__(self):
         border = "*".center(50, "*")
-        info = f"{border}\nFilename: {self.name}\n{border}\n{self.points}"
+        info = "{0}\nFilename: {1}\n{0}\n{2}".format(border, self.name, self.points)
 
         return info

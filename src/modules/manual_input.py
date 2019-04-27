@@ -4,13 +4,12 @@ import functools
 
 
 def repeat_if_exception(function):
-
     @functools.wraps(function)
     def inner(*args, **kwargs):
         try:
             return function(*args, **kwargs)
         except Exception as e:
-            print(f"{e}")
+            print("{}".format(e))
             return inner(*args, **kwargs)
 
     return inner
