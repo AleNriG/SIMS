@@ -11,7 +11,6 @@ cache:
 before_script:
   - python3 -V # Print out python version for debugging
   - pip3 install --user pipenv
-  - pipenv install --dev
 
 test:
   script:
