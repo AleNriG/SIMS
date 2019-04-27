@@ -9,16 +9,14 @@ cache:
     - .venv
 
 before_script:
-  - sudo apt-get -qq update && apt-get -qq install -y python
-  - sudo apt-get -qq update
-  - sudo apt-get -qq install -y python python-virtualenv python-pip
-  - virtualenv venv
-  - . venv/bin/activate
   - python3 -V
   - pip3 -V
+  - pip3 install --user pipenv
+  - python3 -m pipenv install --dev
+  - python3 -m pipenv shell
   - pip3 install mypy pytest
 
 test:
   script:
-  - pipenv run mypy --ignore-missing-imports .
-  - pipenv run pytest
+  - python3 -m pipenv run mypy --ignore-missing-imports .
+  - python3 -m pipenv run pytest
