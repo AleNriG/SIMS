@@ -7,9 +7,12 @@ Email: agorokhov94@gmail.com
 Github: https://github.com/alenrig
 Description:
 """
-from typing import List, Tuple
-from modules import data
+from typing import List
+from typing import Tuple
+
 import pandas as pd
+
+from src.modules import data
 
 
 def asc(filename: str) -> data.Data:
