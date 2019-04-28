@@ -4,12 +4,13 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-flake8 = "*"
-black = "==19.3b0"
-pycodestyle = "*"
-pytest = "*"
 pre-commit = "*"
+black = "==19.3b0"
+flake8 = "*"
+pycodestyle = "*"
 mypy = "*"
+pytest = "*"
+pytest-cov = "*"
 
 [packages]
 numpy = "==1.15.4"
@@ -20,4 +21,4 @@ cmd2 = "*"
 gnureadline = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.5"
