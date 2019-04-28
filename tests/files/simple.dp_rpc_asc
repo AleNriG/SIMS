@@ -1,0 +1,20 @@
+*** DATA FILES ***
+
+Raw data file name(s)	ZLN170_2-6_neg.dp
+Sample ID
+Sample code
+Data process ID
+Analysis date		01/15/2019
+Analysis time		18:45
+Analysis recipe name	No_name_1.rdp
+
+*** DATA START ***
+
+ZLN170_2-6_neg.dp
+28Si					31P					75As
+Time[mn]	Depth	I[cnt/s]	Time[mn]	Depth	I[cnt/s]	Time[mn]	Depth	I[cnt/s]
+4.53333E-002		9.40730E+006	8.93333E-002		1.27277E+005	1.29333E-001		6.96442E+003
+1.78667E-001		7.83114E+007	2.06667E-001		2.21947E+005	2.46667E-001		4.13942E+003
+2.96000E-001		9.50838E+007	3.24000E-001		2.93436E+005	3.64000E-001		2.71346E+003
+
+*** DATA END ***
