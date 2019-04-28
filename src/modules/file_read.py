@@ -12,7 +12,7 @@ from typing import Tuple
 
 import pandas as pd
 
-from src.modules import data
+from . import data
 
 
 def asc(filename: str) -> data.Data:
