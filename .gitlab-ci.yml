@@ -21,4 +21,4 @@ before_script:
 test:
   script:
   - pipenv run mypy --ignore-missing-imports .
-  - pipenv run pytest
+  - pytest --cov-report term-missing --cov=src tests/ --disable-pytest-warnings -v
