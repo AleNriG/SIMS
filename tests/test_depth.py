@@ -10,11 +10,7 @@ def test_homostructure(time, speed):
 
 @pytest.mark.parametrize(
     "speed, indexes, expected",
-    [
-        ([1.0, 2.0], [3], 16.0),
-        ([1.0, 2.0], [4], 20.0),
-        ([1.0, 2.0, 3.0], [1, 3, 5], 22.0),
-    ],
+    [([1.0, 2.0], [3], 16.0), ([1.0, 2.0], [4], 15.0), ([1.0, 2.0, 3.0], [1, 5], 22.0)],
 )
 def test_heterostructure(speed, indexes, expected):
     time = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
