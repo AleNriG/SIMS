@@ -9,8 +9,10 @@ black = "==19.3b0"
 flake8 = "*"
 pycodestyle = "*"
 mypy = "*"
-pytest = "*"
+pytest = "==3.7.1"
+pluggy = "==0.7.1"
 pytest-cov = "*"
+pytest-quickcheck = "*"
 
 [packages]
 numpy = "==1.15.4"
