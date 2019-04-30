@@ -9,4 +9,4 @@ def homostructure(time: List[float], speed: float) -> List[float]:
     :returns: TODO
 
     """
-    pass
+    return [i * speed for i in time]
