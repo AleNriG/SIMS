@@ -1,9 +1,13 @@
+import pytest
+
 from src.modules import minor
 
 
-def test_minor_rsf():
-    assert minor.rsf(7.95e14, 3.32) == 2.394578313253012e+21
+@pytest.mark.randomize(dose=float, integer=float, positive=True)
+def test_minor_rsf(dose, integer):
+    assert minor.rsf(dose, integer) == dose / integer * 10 ** 7
 
 
-def test_minor_hmr():
-    assert minor.hmr(30.973762, 30.9816203) == 3942.5346830745675
+@pytest.mark.randomize(mass1=float, mass2=float, positive=True)
+def test_minor_hmr(mass1, mass2):
+    assert minor.hmr(mass1, mass2) == mass2 / abs(mass1 - mass2)
