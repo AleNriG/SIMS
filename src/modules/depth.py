@@ -1,9 +1,26 @@
+from typing import Any
 from typing import List
 
 import numpy
 
 
-def homostructure(time: List[float], speed: float) -> List[float]:
+def calculate(time: List[float], speed: Any, indexes: List[int] = None) -> List[float]:
+    """TODO: Docstring for calculate.
+
+    :args: TODO
+    :returns: TODO
+
+    """
+    if isinstance(speed, list) and indexes is not None:
+        depth = _heterostructure(time, speed, indexes)
+    elif isinstance(speed, float) and indexes is None:
+        depth = _homostructure(time, speed)
+    else:
+        raise ValueError("Invalid variables")
+    return depth
+
+
+def _homostructure(time: List[float], speed: float) -> List[float]:
     """TODO: Docstring for homostructure.
 
     :time: TODO
@@ -14,7 +31,7 @@ def homostructure(time: List[float], speed: float) -> List[float]:
     return [i * speed for i in time]
 
 
-def heterostructure(
+def _heterostructure(
     time: List[float], speed: List[float], indexes: List[int]
 ) -> List[float]:
     """TODO: Docstring for heterostructure.
