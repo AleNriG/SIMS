@@ -12,10 +12,13 @@ class Data:
 
         :name: TODO
         :points: TODO
+        :figure: TODO
 
         """
         self.name = name
         self.points = points
+        self.figure = self.points.plot(x="Time", title=self.name, grid=True, logy=True)
+        self.figure.set(xlabel="Time, [min]", ylabel="Intencity, [imp/sec]")
 
     def __str__(self):
         border = "*".center(50, "*")
