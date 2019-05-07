@@ -10,8 +10,8 @@ cache:
 
 before_script:
   - python3 -V
-  - pip3 -V
-  - pip3 install --user pipenv
+  - python3 -m pip -V
+  - python3 -m pip install --user pipenv
   - python3 -m pipenv install --dev
 
 test:
