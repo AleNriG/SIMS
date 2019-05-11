@@ -9,15 +9,12 @@ cache:
     - .venv
 
 before_script:
-  - docker info
+  - sudo docker info
 
 build_image:
   script:
-    docker build --force-rm -t pytest .
+    sudo docker build --force-rm -t pytest .
 
 test:
   script:
-    - docker run --rm pytest:latest
-
-after_script:
-  - rm req.txt
+    - sudo docker run --rm pytest:latest
