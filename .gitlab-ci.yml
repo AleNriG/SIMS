@@ -9,6 +9,12 @@ cache:
     - .venv
 
 before_script:
+  - sudo apt update
+  - sudo apt install python3-pip -y
+  - python3 -V
+  - pip3 -V
+  - pip3 install --user pipenv
+  - pipenv lock -r > req.txt
   - sudo docker info
 
 build_image:
