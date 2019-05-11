@@ -10,6 +10,7 @@ cache:
 
 before_script:
   - sudo docker info
+  - pipenv --python /usr/bin/python3.6
   - pipenv lock -r > req.txt
 
 build_image:
