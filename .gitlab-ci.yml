@@ -10,6 +10,7 @@ cache:
 
 before_script:
   - sudo docker info
+  - pipenv lock -r > req.txt
 
 build_image:
   script:
@@ -18,3 +19,6 @@ build_image:
 test:
   script:
     - sudo docker run --rm pytest:latest
+
+after_script:
+  - rm req.txt
