@@ -15,9 +15,9 @@ before_script:
 
 build_image:
   script:
-    sudo docker build --force-rm -t pytest .
+    - sudo docker build --force-rm -t pytest .
 
-test:
+testing:
   script:
     - sudo docker run --rm pytest:latest
 
