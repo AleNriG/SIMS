@@ -4,6 +4,10 @@ from typing import List
 import numpy
 
 
+def set_arguments() -> List[float]:
+    pass
+
+
 def calculate(time: List[float], speed: Any, indexes: List[int] = None) -> List[float]:
     """TODO: Docstring for calculate.
 
