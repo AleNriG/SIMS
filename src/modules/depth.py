@@ -3,6 +3,51 @@ from typing import List
 
 import numpy
 
+from . import manual_input
+
+
+def set_arguments(time: List[float]) -> List[float]:
+    layers = manual_input.read_int(message="Input layers number: ")
+    while layers <= 0:
+        print("Layers value must be positive!")
+        layers = manual_input.read_int(message="Input layers number: ")
+
+    if layers == 1:
+        print("Calculating depth for homostructure")
+        speed = manual_input.read_float(message="Input speed: ")
+        result = calculate(time, speed)
+
+    else:
+        print("Calculating depth for heterostructure")
+        indexes = _get_list_of_values(
+            layers, values_type="int", message="Input index of layer changing: "
+        )
+        speed = _get_list_of_values(
+            layers, values_type="float", message="Input speed of the layer: "
+        )
+        result = calculate(time, speed, indexes)
+
+    return result
+
+
+def _get_list_of_values(layers: int, values_type: str, message: str) -> List[Any]:
+
+    if values_type == "int":  # if we reading indexes
+        read_value = manual_input.read_int
+        n = layers - 1
+    else:  # if we reading speed
+        read_value = manual_input.read_float
+        n = layers
+
+    values: List[Any] = []
+    for _ in range(n):
+        value = read_value(message=message)
+        while value <= 0 or value in values:
+            print("Value must be positive and do not repeat")
+            value = read_value(message=message)
+        values.append(value)
+    return values
+
 
 def calculate(time: List[float], speed: Any, indexes: List[int] = None) -> List[float]:
     """TODO: Docstring for calculate.

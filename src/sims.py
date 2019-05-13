@@ -10,6 +10,7 @@ Description:
 import os
 
 import cmd2
+from modules import depth
 from modules import file_read
 from modules import manual_input
 from modules import minor
@@ -67,7 +68,15 @@ class Main(cmd2.Cmd):
         try:
             print(self.datafile)
         except Exception:
-            self.pager_chop("Data file is not loaded")
+            print("Data file is not loaded")
+
+    def do_depth(self, _):
+        try:
+            self.datafile.points["Depth"] = depth.set_arguments(
+                self.datafile.points["Time"]
+            )
+        except Exception as e:
+            print("{}".format(e))
 
 
 if __name__ == "__main__":
