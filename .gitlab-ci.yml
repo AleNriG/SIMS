@@ -8,13 +8,19 @@ cache:
     - .cache/pip
     - .venv
 
-before_script:
-  - python3 -V
-  - python3 -m pip -V
-  - python3 -m pip install --user pipenv
-  - python3 -m pipenv install --dev
-
-test:
+info:
   script:
-  - python3 -m pipenv run mypy --ignore-missing-imports .
-  - python3 -m pipenv run pytest --cov-report term-missing --cov=src tests/ --disable-pytest-warnings -v
+    - python3 -V
+    - pip3 -V
+    - sudo docker info
+
+build_image:
+  before_script:
+    - python3 -m pip install pipenv
+    - python3 -m pipenv lock -r > req.txt
+  script:
+    - sudo docker build -f Dockerfile.test --force-rm -t pytest .
+
+testing:
+  script:
+    - sudo docker run --rm pytest:latest
