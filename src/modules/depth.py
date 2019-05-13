@@ -3,9 +3,25 @@ from typing import List
 
 import numpy
 
+from . import manual_input
 
-def set_arguments() -> List[float]:
-    pass
+
+def set_arguments(time: List[float]) -> List[float]:
+    layers = manual_input.read_int(message="Input layers number: ")
+
+    if layers == 1:
+        print("Calculating depth for homostructure")
+        speed = manual_input.read_float(message="Input speed: ")
+        result = calculate(time, speed)
+
+    elif layers >= 2:
+        pass
+
+    else:
+        print("Layers value must be positive!")
+        set_arguments(time)
+
+    return result
 
 
 def calculate(time: List[float], speed: Any, indexes: List[int] = None) -> List[float]:
