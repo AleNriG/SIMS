@@ -8,11 +8,15 @@ cache:
     - .cache/pip
     - .venv
 
-build_image:
-  before_script:
+info:
+  script:
     - python3 -V
     - pip3 -V
-    - pip3 install pipenv
+    - sudo docker info
+
+build_image:
+  before_script:
+    - python3 -m pip install pipenv
     - python3 -m pipenv lock -r > req.txt
   script:
     - sudo docker build -f Dockerfile.test --force-rm -t pytest .
