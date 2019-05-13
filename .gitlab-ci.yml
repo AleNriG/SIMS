@@ -12,7 +12,7 @@ before_script:
   - python3 -V
   - pip3 -V
   - pip3 install pipenv
-  - pipenv lock -r > req.txt
+  - python3 -m pipenv lock -r > req.txt
   - sudo docker info
 
 build_image:
@@ -22,6 +22,3 @@ build_image:
 testing:
   script:
     - sudo docker run --rm pytest:latest
-
-after_script:
-  - rm req.txt
