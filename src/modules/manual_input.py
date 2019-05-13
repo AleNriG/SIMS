@@ -16,6 +16,11 @@ def repeat_if_exception(function):
 
 
 @repeat_if_exception
+def read_int(message: str = "") -> int:
+    return int(input(message))
+
+
+@repeat_if_exception
 def read_float(message: str = "") -> float:
     return float(input(message))
 
