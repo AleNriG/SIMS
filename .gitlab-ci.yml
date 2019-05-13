@@ -1,5 +1,3 @@
-image: python:latest
-
 variables:
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
 
@@ -8,19 +6,28 @@ cache:
     - .cache/pip
     - .venv
 
+stages:
+  - info
+  - build
+  - test
+
+
 info:
+  stage: info
   script:
     - python3 -V
     - pip3 -V
     - sudo docker info
 
-build_image:
+build:
+  stage: build
   before_script:
     - python3 -m pip install pipenv
     - python3 -m pipenv lock -r > req.txt
   script:
     - sudo docker build -f Dockerfile.test --force-rm -t pytest .
 
-testing:
+test:
+  stage: test
   script:
     - sudo docker run --rm pytest:latest
