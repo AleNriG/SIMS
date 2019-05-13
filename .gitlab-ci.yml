@@ -15,7 +15,7 @@ build_image:
     - pip3 install pipenv
     - python3 -m pipenv lock -r > req.txt
   script:
-    - sudo docker build --force-rm -t pytest .
+    - sudo docker build -f Dockerfile.test --force-rm -t pytest .
 
 testing:
   script:
