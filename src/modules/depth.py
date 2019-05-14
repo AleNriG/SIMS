@@ -89,11 +89,11 @@ def _heterostructure(
     """
     depth = [time[0] * speed[0]]
     layers = len(indexes) + 1
-    indexes.append(time.index(time[-1]))
+    indexes.append(len(time))
     delta_x = numpy.diff(time).mean()
-    i = 0
+    i = 1
     for layer in range(layers):
-        while i < indexes[layer]:
+        while i != indexes[layer]:
             depth.append(depth[-1] + delta_x * speed[layer])
             i += 1
     return depth
