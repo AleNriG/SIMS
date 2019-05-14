@@ -69,6 +69,18 @@ class Main(cmd2.Cmd):
         except Exception:
             self.pager_chop("Data file is not loaded")
 
+    def do_plot(self, _):
+        """TODO: Docstring for do_plot.
+
+        :_: TODO
+        :returns: TODO
+
+        """
+        try:
+            self.datafile.plot()
+        except Exception as e:
+            print(f"{e}")
+
 
 if __name__ == "__main__":
     Main().cmdloop()
