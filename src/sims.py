@@ -81,6 +81,19 @@ class Main(cmd2.Cmd):
         except Exception as e:
             print(f"{e}")
 
+    def do_plot_settings(self, _):
+        """TODO: Docstring for do_plot_settings.
+
+        :_: TODO
+        :returns: TODO
+
+        """
+        x = self.select("Time Depth", "Choose x: ")
+        try:
+            self.datafile.x = x
+        except Exception as e:
+            print(f"{e}")
+
 
 if __name__ == "__main__":
     Main().cmdloop()
