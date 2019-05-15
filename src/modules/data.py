@@ -1,7 +1,6 @@
 """
 TODO: Documentation
 """
-
 from matplotlib import pyplot as plt
 
 
@@ -14,19 +13,20 @@ class Data:
 
         :name: TODO
         :points: TODO
-        :figure: TODO
 
         """
         self.name = name
         self.points = points
+
+        self.x = "Time"
 
     def _plot_init(self):
         """TODO: Docstring for _plot_init.
         :returns: TODO
 
         """
-        self.figure = self.points.plot(x="Time", title=self.name, grid=True, logy=True)
-        self.figure.set(xlabel="Time, [min]", ylabel="Intencity, [imp/sec]")
+        self.figure = self.points.plot(x=self.x, title=self.name, grid=True, logy=True)
+        self.figure.set(xlabel=self.x, ylabel="Intencity")
 
     def __str__(self):
         border = "*".center(50, "*")
