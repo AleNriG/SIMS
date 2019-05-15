@@ -19,13 +19,18 @@ class Data:
         self.points = points
 
         self.x = "Time"
+        self.y = [
+            header for header in list(self.points.columns) if header is not self.x
+        ]
 
     def _plot_init(self):
         """TODO: Docstring for _plot_init.
         :returns: TODO
 
         """
-        self.figure = self.points.plot(x=self.x, title=self.name, grid=True, logy=True)
+        self.figure = self.points.plot(
+            x=self.x, y=self.y, title=self.name, grid=True, logy=True
+        )
         self.figure.set(xlabel=self.x, ylabel="Intencity")
 
     def __str__(self):
