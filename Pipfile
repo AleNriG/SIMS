@@ -13,6 +13,7 @@ pytest = "==3.7.1"
 pluggy = "==0.7.1"
 pytest-cov = "*"
 pytest-quickcheck = "*"
+pytest-mpl = "*"
 
 [packages]
 numpy = "==1.15.4"
