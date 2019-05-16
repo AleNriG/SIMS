@@ -6,7 +6,7 @@ import numpy
 from . import manual_input
 
 
-def set_arguments(time: List[float]) -> List[float]:
+def set_arguments_and_calculate(time: List[float]) -> List[float]:
     layers = manual_input.read_int(message="Input layers number: ")
     while layers <= 0:
         print("Layers value must be positive!")

@@ -72,7 +72,7 @@ class Main(cmd2.Cmd):
 
     def do_depth(self, _):
         try:
-            self.datafile.points["Depth"] = depth.set_arguments(
+            self.datafile.points["Depth"] = depth.set_arguments_and_calculate(
                 self.datafile.points["Time"]
             )
         except Exception as e:
