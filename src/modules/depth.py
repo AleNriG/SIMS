@@ -7,6 +7,13 @@ from . import manual_input
 
 
 def set_arguments(time: List[float]) -> List[float]:
+    """Calculate structure depth.
+    API for manual parameters setting.
+
+    :time: list of time points
+    :return: list of depth points
+
+    """
     layers = manual_input.read_int(message="Input layers number: ")
     while layers <= 0:
         print("Layers value must be positive!")
@@ -31,7 +38,7 @@ def set_arguments(time: List[float]) -> List[float]:
 
 
 def _get_list_of_values(layers: int, values_type: str, message: str) -> List[Any]:
-
+    """Get list of positive and nonrepetative values of integers or floats."""
     if values_type == "int":  # if we reading indexes
         read_value = manual_input.read_int
         n = layers - 1
@@ -50,10 +57,12 @@ def _get_list_of_values(layers: int, values_type: str, message: str) -> List[Any
 
 
 def calculate(time: List[float], speed: Any, indexes: List[int] = None) -> List[float]:
-    """TODO: Docstring for calculate.
+    """Calculate structure depth. API for automatic calculation in case we already have
+    all needed data (for future modules).
 
-    :args: TODO
-    :returns: TODO
+    :time: list of time points
+    :speed: float variable OR list of float variables
+    :indexes: indexes of points of layer conversion (if exist) (counting from 1)
 
     """
     if isinstance(speed, list) and indexes is not None:
@@ -66,31 +75,18 @@ def calculate(time: List[float], speed: Any, indexes: List[int] = None) -> List[
 
 
 def _homostructure(time: List[float], speed: float) -> List[float]:
-    """TODO: Docstring for homostructure.
-
-    :time: TODO
-    :speed: TODO
-    :returns: TODO
-
-    """
     return [i * speed for i in time]
 
 
 def _heterostructure(
     time: List[float], speed: List[float], indexes: List[int]
 ) -> List[float]:
-    """TODO: Docstring for heterostructure.
 
-    :time: TODO
-    :speed: TODO
-    :indexes: TODO
-    :returns: TODO
-
-    """
     depth = [time[0] * speed[0]]
     layers = len(indexes) + 1
     indexes.append(len(time))
     delta_x = numpy.diff(time).mean()
+
     i = 1
     for layer in range(layers):
         while i != indexes[layer]:
