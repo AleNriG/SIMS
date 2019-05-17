@@ -1,10 +1,7 @@
 FROM python:3.7
 
-COPY . /app
 WORKDIR /app
+COPY Pipfile*  /app
 
-RUN python3 -m pip install -r req.txt
-RUN python3 -m pip install pytest==3.7.1 pluggy==0.7.1 pytest-quickcheck
-
-ENTRYPOINT ["pytest"]
-CMD ["--disable-pytest-warnings", "-v", "tests/"]
+RUN sudo apt update && sudo apt install -y pipenv \
+    && pipenv install --dev --system && sudo apt clean
