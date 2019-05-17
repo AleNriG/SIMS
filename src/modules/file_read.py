@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-File: read.py
-Author: AleNriG
-Email: agorokhov94@gmail.com
-Github: https://github.com/alenrig
-Description:
-"""
 from typing import List
 from typing import Tuple
 
@@ -16,10 +7,10 @@ from . import data
 
 
 def asc(filename: str) -> data.Data:
-    """Reader for raw data from CAMECA IMS-7f
+    """Reader for raw data from CAMECA IMS-7f.
 
-    :filename: TODO
-    :returns: TODO
+    :filename: file to read
+    :returns: data object, containing name, points and etc
 
     """
     with open(filename, "r") as file:
@@ -35,10 +26,10 @@ def asc(filename: str) -> data.Data:
 
 
 def _find_file_name(raw_data: List[str]) -> str:
-    """TODO: Docstring for _find_file_name.
+    """Find filename, writen inside file itself.
 
-    :raw_text: TODO
-    :returns: TODO
+    :raw_text: raw opened data
+    :returns: filename
 
     """
     raw_name_string = raw_data[2]
@@ -47,10 +38,10 @@ def _find_file_name(raw_data: List[str]) -> str:
 
 
 def _cut_header_and_points(raw_data: List[str]) -> Tuple[str, List[str]]:
-    """TODO: Docstring for _cut_points.
+    """Cut ion names and datapoints from opened file.
 
-    :raw_data: TODO
-    :returns: TODO
+    :raw_data: raw opened data
+    :returns: header string, points
 
     """
     start_line = raw_data.index("*** DATA START ***") + 3
@@ -61,10 +52,10 @@ def _cut_header_and_points(raw_data: List[str]) -> Tuple[str, List[str]]:
 
 
 def _reshape_ion_string(bad_header: str) -> List[str]:
-    """TODO: Docstring for _parse_ion_names.
+    """Create list of columns for pandas.DataFrame.
 
-    :header: TODO
-    :returns: TODO
+    :header: string with ion names
+    :returns: list of columns
 
     """
     header = [ion.replace(" ", "") for ion in filter(None, bad_header.split("\t"))]
@@ -73,10 +64,10 @@ def _reshape_ion_string(bad_header: str) -> List[str]:
 
 
 def _reshape_points(points: List[str]) -> List[List[float]]:
-    """TODO: Docstring for _reshape_points.
+    """Reshape strings with points to float, remove unnecessary points
 
-    :points: TODO
-    :returns: TODO
+    :points: strings with data needed
+    :returns: array for future pandas.DataFrame
 
     """
     grid, data = [], []
