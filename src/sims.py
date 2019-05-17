@@ -5,7 +5,7 @@ File: main.py
 Author: AleNriG
 Email: agorokhov94@gmail.com
 Github: https://github.com/alenrig
-Description:
+Description: Program for easing work with Secondary Ion Mass Spectrometry data.
 """
 import os
 
@@ -18,7 +18,7 @@ from modules import minor
 
 class Main(cmd2.Cmd):
 
-    """Docstring for Main. """
+    """Main CLI class"""
 
     prompt = ">>> "
     intro = "Welcome to SIMS! Type ? to list commands."
@@ -56,6 +56,7 @@ class Main(cmd2.Cmd):
 
     @cmd2.with_argument_list
     def do_read(self, args):
+        """Read file"""
         if not args:
             self.perror("You must specify the file path!")
             return
@@ -65,12 +66,14 @@ class Main(cmd2.Cmd):
     complete_read = cmd2.Cmd.path_complete
 
     def do_data(self, _):
+        """Print current datafile"""
         try:
             print(self.datafile)
         except Exception:
             print("Data file is not loaded")
 
     def do_depth(self, _):
+        """Calculate depth"""
         try:
             self.datafile.points["Depth"] = depth.set_arguments_and_calculate(
                 self.datafile.points["Time"]
@@ -79,24 +82,14 @@ class Main(cmd2.Cmd):
             print("{}".format(e))
 
     def do_plot(self, _):
-        """TODO: Docstring for do_plot.
-
-        :_: TODO
-        :returns: TODO
-
-        """
+        """Plot points from datafile"""
         try:
             self.datafile.plot()
         except Exception as e:
             print(f"{e}")
 
     def do_plot_settings(self, _):
-        """TODO: Docstring for do_plot_settings.
-
-        :_: TODO
-        :returns: TODO
-
-        """
+        """Set up plot settings"""
         x = self.select("Time Depth", "Choose x: ")
         try:
             self.datafile.x = x
