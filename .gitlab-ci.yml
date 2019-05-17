@@ -21,9 +21,6 @@ info:
 
 build:
   stage: build
-  before_script:
-    - python3 -m pip install pipenv
-    - python3 -m pipenv lock -r > req.txt
   script:
     - sudo docker build -f Dockerfile.test --force-rm -t pytest .
 
