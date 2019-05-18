@@ -1,0 +1,11 @@
+FROM python:3.7
+
+WORKDIR /app
+COPY Pipfile* ./
+
+RUN apt-get update && python -m pip install pipenv \
+    && pipenv install --dev --system && apt-get clean
+
+COPY . .
+ENTRYPOINT ["pytest"]
+CMD ["--disable-pytest-warnings", "-v", "tests/"]

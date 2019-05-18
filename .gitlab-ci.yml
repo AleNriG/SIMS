@@ -1,20 +1,24 @@
-image: python:latest
-
-variables:
-  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
-
 cache:
   paths:
-    - .cache/pip
     - .venv
 
-before_script:
-  - python3 -V
-  - pip3 -V
-  - pip3 install --user pipenv
-  - python3 -m pipenv install --dev
+stages:
+  - info
+  - build
+  - test
+
+
+info:
+  stage: info
+  script:
+    - sudo docker info
+
+build:
+  stage: build
+  script:
+    - sudo docker build -f Dockerfile.test --force-rm -t pytest .
 
 test:
+  stage: test
   script:
-  - python3 -m pipenv run mypy --ignore-missing-imports .
-  - python3 -m pipenv run pytest --cov-report term-missing --cov=src tests/ --disable-pytest-warnings -v
+    - sudo docker run --rm pytest:latest

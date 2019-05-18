@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 import functools
 
 
@@ -13,6 +11,11 @@ def repeat_if_exception(function):
             return inner(*args, **kwargs)
 
     return inner
+
+
+@repeat_if_exception
+def read_int(message: str = "") -> int:
+    return int(input(message))
 
 
 @repeat_if_exception
