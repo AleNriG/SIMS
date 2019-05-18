@@ -55,15 +55,15 @@ class Main(cmd2.Cmd):
             print("{}".format(e))
 
     @cmd2.with_argument_list
-    def do_read(self, args):
-        """Read file"""
+    def do_open(self, args):
+        """Open file"""
         if not args:
             self.perror("You must specify the file path!")
             return
         self.datafile = file_read.asc(args[0])
         print(self.datafile)
 
-    complete_read = cmd2.Cmd.path_complete
+    complete_open = cmd2.Cmd.path_complete
 
     def do_data(self, _):
         """Print current datafile"""
