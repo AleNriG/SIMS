@@ -81,6 +81,19 @@ class Main(cmd2.Cmd):
         except Exception as e:
             print("{}".format(e))
 
+    def do_concentration(self, _):
+        """TODO: Docstring for do_concentration.
+
+        :_: TODO
+        :returns: TODO
+
+        """
+        matrix = self.select(self.datafile.y, "Select matrix: ")
+        self.datafile.set_matrix(matrix)
+        impurity = self.select(self.datafile.impurities, "Select impurity: ")
+        # TODO: add db for every ion isotopic abundance
+        print(matrix, impurity)
+
     def do_plot(self, _):
         """Plot points from datafile"""
         try:
