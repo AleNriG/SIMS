@@ -92,7 +92,9 @@ class Main(cmd2.Cmd):
         self.datafile.set_matrix(matrix)
         impurity = self.select(self.datafile.impurities, "Select impurity: ")
         # TODO: add db for every ion isotopic abundance
-        print(matrix, impurity)
+        rsf = manual_input.read_float(message="Input RSF: ")
+        # TODO: refactor ion string to element (11B -> B)
+        print(matrix, impurity, rsf)
 
     def do_plot(self, _):
         """Plot points from datafile"""
