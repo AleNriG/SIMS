@@ -16,3 +16,8 @@ def concentration(
         matrix
     ), "Impurity and matrix lists must be the same lenght!"
     return [i / ia / m * rsf for i, m in zip(impurity, matrix)]
+
+def _strip_ion(ion: str) -> str:
+    symbols = [symbol for symbol in ion if symbol.isalpha()]
+    element = ''.join(symbols)
+    return element
