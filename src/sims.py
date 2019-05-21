@@ -92,9 +92,16 @@ class Main(cmd2.Cmd):
         self.datafile.set_matrix(matrix)
         impurity = self.select(self.datafile.impurities, "Select impurity: ")
         # TODO: add db for every ion isotopic abundance
+        ia = 1
         rsf = manual_input.read_float(message="Input RSF: ")
-        # TODO: refactor ion string to element (11B -> B)
-        print(matrix, impurity, rsf)
+        element = minor._strip_ion(impurity)
+        try:
+            result = minor.concentration(
+                self.datafile.points[impurity], ia, self.datafile.points[matrix], rsf
+            )
+            self.datafile.points[element] = result
+        except Exception as e:
+            print(f"{e}")
 
     def do_plot(self, _):
         """Plot points from datafile"""
