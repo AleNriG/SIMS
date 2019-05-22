@@ -41,6 +41,15 @@ class Data:
 
         return info
 
+    def set_matrix(self, element):
+        """TODO: Docstring for set_matrix.
+
+        :element: TODO
+
+        """
+        self.matrix = element
+        self.impurities = [i for i in self.y if i is not self.matrix]
+
     def plot(self):
         """Plot figure."""
         self._plot_init()
