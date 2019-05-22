@@ -1,6 +1,7 @@
-import pytest
 import csv
 import os
+
+import pytest
 
 from src.modules import db
 
@@ -113,7 +114,7 @@ class TestDB:
         db.get_ia(key) == expected
 
 
-def test_strip_ions_names(self):
+def test_strip_ions_names():
     result = [db._strip_ion(ion) for ion in IONS]
     result = set(result)
     assert result == ELEMENTS
