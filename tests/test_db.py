@@ -22,7 +22,7 @@ def read_test_db(filepath):
 
 IONS, MASS = read_test_db(test_database)
 
-ELEMENTS = (
+ELEMENTS = {
     "H",
     "He",
     "Li",
@@ -105,7 +105,7 @@ ELEMENTS = (
     "Bi",
     "Th",
     "U",
-)
+}
 
 
 class TestDB:
