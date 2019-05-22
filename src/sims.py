@@ -11,6 +11,7 @@ import os
 
 import cmd2
 from modules import depth
+from modules import db
 from modules import file_read
 from modules import manual_input
 from modules import minor
@@ -91,8 +92,7 @@ class Main(cmd2.Cmd):
         matrix = self.select(self.datafile.y, "Select matrix: ")
         self.datafile.set_matrix(matrix)
         impurity = self.select(self.datafile.impurities, "Select impurity: ")
-        # TODO: add db for every ion isotopic abundance
-        ia = 1
+        ia = db.get_ia(impurity)
         rsf = manual_input.read_float(message="Input RSF: ")
         element = minor._strip_ion(impurity)
         try:
