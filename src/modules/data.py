@@ -1,3 +1,4 @@
+import pandas
 from matplotlib import pyplot as plt
 
 
@@ -10,7 +11,7 @@ class Data:
 
     """
 
-    def __init__(self, name, points):
+    def __init__(self, name: str, points: pandas.DataFrame):
         """Initialize filename, datapoints of measurement,
         absciss and ordinate for future plotting.
 
