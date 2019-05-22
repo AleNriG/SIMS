@@ -33,6 +33,7 @@ ELEMENTS = {
     "O",
     "F",
     "Ne",
+    "Na",
     "Mg",
     "Al",
     "Si",
