@@ -11,7 +11,7 @@ test_database = os.path.join(os.path.dirname(__file__), "files/test_ions_db.csv"
 def read_test_db(filepath):
     ions = []
     mass = []
-    with open(filepath, 'r') as file:
+    with open(filepath, "r") as file:
         for line in csv.reader(file):
             x, y = line
             ions.append(x)

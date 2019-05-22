@@ -4,6 +4,7 @@ from pytest import list_of
 
 from src.modules import minor
 
+
 @pytest.mark.randomize(dose=float, integer=float, positive=True)
 def test_minor_rsf(dose, integer):
     assert minor.rsf(dose, integer) == dose / integer * 10 ** 7
