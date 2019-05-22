@@ -1,3 +1,4 @@
+import pandas
 from matplotlib import pyplot as plt
 
 
@@ -10,7 +11,7 @@ class Data:
 
     """
 
-    def __init__(self, name, points):
+    def __init__(self, name: str, points: pandas.DataFrame):
         """Initialize filename, datapoints of measurement,
         absciss and ordinate for future plotting.
 
@@ -40,6 +41,15 @@ class Data:
         info = "{0}\nFilename: {1}\n{0}\n{2}".format(border, self.name, self.points)
 
         return info
+
+    def set_matrix(self, element):
+        """TODO: Docstring for set_matrix.
+
+        :element: TODO
+
+        """
+        self.matrix = element
+        self.impurities = [i for i in self.y if i is not self.matrix]
 
     def plot(self):
         """Plot figure."""

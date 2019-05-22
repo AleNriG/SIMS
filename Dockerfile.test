@@ -8,4 +8,4 @@ RUN apt-get update && python -m pip install pipenv \
 
 COPY . .
 ENTRYPOINT ["pytest"]
-CMD ["--disable-pytest-warnings", "-v", "tests/"]
+CMD ["--disable-pytest-warnings", "--random-order", "-v", "tests/"]

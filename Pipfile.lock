@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8842cfd4a66a53f9afc42209cb2739bf3c4f009e255d2c655b813a04998dd468"
+            "sha256": "e9e1164566b7df8e07b1cb4666e4dcf50fcc19deec420c5d238ec96b0e1ae5eb"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -368,10 +368,10 @@
         },
         "importlib-metadata": {
             "hashes": [
-                "sha256:2f2e54cbf6b06b16351e4c40a6adb0860cab6cfb95a0c0fcb58bb789c4b450f5",
-                "sha256:37bbea81dec44d1ff72d58a1b5c1599a9f3436537f33e9e26f276610064c4830"
+                "sha256:0e375a4c177090292988d1c2f997c7c2467d908c1adbed3e08fb511486c85457",
+                "sha256:440815529340fb7fdd6a83ebf4258cc2860fb3770d37b52875e37c6f509a4cd6"
             ],
-            "version": "==0.12"
+            "version": "==0.13"
         },
         "kiwisolver": {
             "hashes": [
@@ -586,6 +586,14 @@
             ],
             "index": "pypi",
             "version": "==0.8.3"
+        },
+        "pytest-random-order": {
+            "hashes": [
+                "sha256:6b2159342a4c8c10855bc4fc6d65ee890fc614cb2b4ff688979b008a82a0ff52",
+                "sha256:72279a7f823969e18b10e438950f58330d17e0fcffb57cbd7929770cd687ecb2"
+            ],
+            "index": "pypi",
+            "version": "==1.0.4"
         },
         "python-dateutil": {
             "hashes": [

@@ -2,6 +2,8 @@ import pytest
 
 from src.modules import depth
 
+TIME = [0.3 * i for i in range(101)]
+
 
 @pytest.mark.randomize(time=pytest.list_of(float), speed=float, positive=True)
 def test_homostructure(time, speed):
@@ -10,40 +12,21 @@ def test_homostructure(time, speed):
 
 @pytest.mark.parametrize(
     "speed, indexes, expected",
-    [([1.0, 2.0], [3], 18.5), ([1.0, 2.0], [4], 18.0), ([1.0, 2.0, 3.0], [2, 5], 26.5)],
+    [
+        ([1.0, 2.0], [3], 59.4000000000001),
+        ([1.0, 2.0], [4], 59.100000000000094),
+        ([1.0, 2.0, 3.0], [2, 5], 88.50000000000009),
+    ],
 )
 def test_heterostructure(speed, indexes, expected):
-    time = [
-        0.5,
-        1.0,
-        1.5,
-        2.0,
-        2.5,
-        3.0,
-        3.5,
-        4.0,
-        4.5,
-        5.0,
-        5.5,
-        6.0,
-        6.5,
-        7.0,
-        7.5,
-        8.0,
-        8.5,
-        9.0,
-        9.5,
-        10.0,
-    ]
-    assert depth._heterostructure(time, speed, indexes)[-1] == expected
+    assert depth._heterostructure(TIME, speed, indexes)[-1] == expected
 
 
 @pytest.mark.parametrize(
-    "speed, indexes, expected", [(2.0, None, 20.0), ([1.0, 2.0], [3], 17.0)]
+    "speed, indexes, expected", [(2.0, None, 60.0), ([1.0, 2.0], [3], 59.4000000000001)]
 )
 def test_calculate(speed, indexes, expected):
-    time = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]
-    assert depth.calculate(time, speed, indexes)[-1] == expected
+    assert depth.calculate(TIME, speed, indexes)[-1] == expected
 
 
 @pytest.mark.parametrize(
