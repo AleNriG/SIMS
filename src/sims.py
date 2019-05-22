@@ -94,7 +94,7 @@ class Main(cmd2.Cmd):
         impurity = self.select(self.datafile.impurities, "Select impurity: ")
         ia = db.get_ia(impurity)
         rsf = manual_input.read_float(message="Input RSF: ")
-        element = minor._strip_ion(impurity)
+        element = db._strip_ion(impurity)
         try:
             result = minor.concentration(
                 self.datafile.points[impurity], ia, self.datafile.points[matrix], rsf

@@ -1,7 +1,13 @@
 import sqlite3
 import os
 
-database = os.path.join(os.path.dirname(__file__), "../db/ia.db3")
+DATABASE = os.path.join(os.path.dirname(__file__), "../db/ia.db3")
+
+
+def _strip_ion(ion: str) -> str:
+    symbols = [symbol for symbol in ion if symbol.isalpha()]
+    element = ''.join(symbols)
+    return element
 
 
 def get_ia(key: str) -> float:
@@ -11,7 +17,7 @@ def get_ia(key: str) -> float:
     :returns: TODO
 
     """
-    with sqlite3.connect(database) as connection:
+    with sqlite3.connect(DATABASE) as connection:
         cursor = connection.cursor()
 
         request = f"SELECT abundance FROM abundance WHERE species IS '{key}'"
