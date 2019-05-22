@@ -12,14 +12,18 @@ def test_homostructure(time, speed):
 
 @pytest.mark.parametrize(
     "speed, indexes, expected",
-    [([1.0, 2.0], [3], 18.5), ([1.0, 2.0], [4], 18.0), ([1.0, 2.0, 3.0], [2, 5], 26.5)],
+    [
+        ([1.0, 2.0], [3], 59.4000000000001),
+        ([1.0, 2.0], [4], 59.100000000000094),
+        ([1.0, 2.0, 3.0], [2, 5], 88.50000000000009),
+    ],
 )
 def test_heterostructure(speed, indexes, expected):
     assert depth._heterostructure(TIME, speed, indexes)[-1] == expected
 
 
 @pytest.mark.parametrize(
-    "speed, indexes, expected", [(2.0, None, 20.0), ([1.0, 2.0], [3], 17.0)]
+    "speed, indexes, expected", [(2.0, None, 60.0), ([1.0, 2.0], [3], 59.4000000000001)]
 )
 def test_calculate(speed, indexes, expected):
     assert depth.calculate(TIME, speed, indexes)[-1] == expected
