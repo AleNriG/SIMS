@@ -11,7 +11,7 @@ class Data:
 
     """
 
-    def __init__(self, name: str, points: pandas.DataFrame):
+    def __init__(self, name: str, points: pandas.DataFrame) -> None:
         """Initialize filename, datapoints of measurement,
         absciss and ordinate for future plotting.
 
@@ -29,20 +29,20 @@ class Data:
             header for header in list(self.points.columns) if header is not self.x
         ]
 
-    def _plot_init(self):
+    def _plot_init(self) -> None:
         """Initializationi and Reinitilization of pyplot figure."""
         self.figure = self.points.plot(
             x=self.x, y=self.ions, title=self.name, grid=True, logy=True
         )
         self.figure.set(xlabel=self.x, ylabel="Intencity")
 
-    def __str__(self):
+    def __str__(self) -> str:
         border = "*".center(50, "*")
         info = "{0}\nFilename: {1}\n{0}\n{2}".format(border, self.name, self.points)
 
         return info
 
-    def set_matrix(self, element):
+    def set_matrix(self, element: str) -> None:
         """TODO: Docstring for set_matrix.
 
         :element: TODO
@@ -51,7 +51,7 @@ class Data:
         self.matrix = element
         self.impurities = [i for i in self.ions if i is not self.matrix]
 
-    def plot(self):
+    def plot(self) -> None:
         """Plot figure."""
         self._plot_init()
         plt.show()
