@@ -11,6 +11,7 @@ Welcome to SIMS's documentation!
    :caption: Contents:
 
    rst/introduction
+   rst/getting_started
 
 
 
