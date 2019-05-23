@@ -25,14 +25,14 @@ class Data:
         self.x = "Time"
         """If add new ordinate points (for example Depth), it will be plotted
         on the plot as absciss value. To fix that, all absciss have their own list."""
-        self.y = [
+        self.ions = [
             header for header in list(self.points.columns) if header is not self.x
         ]
 
     def _plot_init(self):
         """Initializationi and Reinitilization of pyplot figure."""
         self.figure = self.points.plot(
-            x=self.x, y=self.y, title=self.name, grid=True, logy=True
+            x=self.x, y=self.ions, title=self.name, grid=True, logy=True
         )
         self.figure.set(xlabel=self.x, ylabel="Intencity")
 
@@ -49,7 +49,7 @@ class Data:
 
         """
         self.matrix = element
-        self.impurities = [i for i in self.y if i is not self.matrix]
+        self.impurities = [i for i in self.ions if i is not self.matrix]
 
     def plot(self):
         """Plot figure."""
