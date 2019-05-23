@@ -10,6 +10,8 @@ Welcome to SIMS's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   rst/introduction
+
 
 
 Indices and tables
