@@ -13,19 +13,10 @@ class Calculator(SelectionMenu):
         self.commands = [i.__doc__ for i in self.programs]
 
         SelectionMenu.__init__(self, title=title)
-        self._call()
-
-    def _call(self):
         self._selection_menu_loop(self.commands, self.programs)
 
     def _rsf(self):
-        """Calculate RSF
-
-        Returns
-        -------
-        TODO
-
-        """
+        """Calculate RSF"""
         dose = manual_input.read_float(message="Input dose: ")
         integer = manual_input.read_float(message="Input integration result: ")
         try:
@@ -35,13 +26,7 @@ class Calculator(SelectionMenu):
             self.perror(f"{e}")
 
     def _hmr(self):
-        """Calculate HMR
-
-        Returns
-        -------
-        TODO
-
-        """
+        """Calculate HMR"""
         mass_1 = manual_input.read_eval(message="Input expression for the first mass: ")
         mass_2 = manual_input.read_eval(
             message="Input expression for the second mass: "
