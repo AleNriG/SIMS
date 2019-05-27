@@ -1,5 +1,5 @@
+from typing import Callable
 from typing import List
-from typing import Optional
 
 import cmd2
 
@@ -9,7 +9,7 @@ class SelectionMenu(cmd2.Cmd):
     """Parental class menus using cmd2 select."""
 
     def __init__(self, title: str) -> None:
-        """TODO: to be defined1.
+        """Initialize selection menu class.
 
         Parameters
         ----------
@@ -20,16 +20,23 @@ class SelectionMenu(cmd2.Cmd):
 
         self._title = title.center(30, "~")
 
-    def _selection_menu_loop(self, commands: List[str]) -> Optional[int]:
-        """TODO: Docstring for _selection_menu_loop.
+    def _selection_menu_loop(self, commands: List[str], programs: List[Callable]):
+        """Start selection loop.
 
         Parameters
         ----------
-        commands : TODO
+        commands : functions docs
+        programs : functions to call
 
         Returns
         -------
-        TODO
+        Call of chosen program
 
         """
-        pass
+        while True:
+            self.poutput(self._title)
+            chosen_command = self.select(commands)
+            if chosen_command == "Back":
+                break
+            chosen_program = commands.index(chosen_command)
+            programs[chosen_program]()
