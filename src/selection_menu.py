@@ -5,7 +5,7 @@ class SelectionMenu(cmd2.Cmd):
 
     """Parental class menus using cmd2 select."""
 
-    def __init__(self, title):
+    def __init__(self, title: str):
         """TODO: to be defined1.
 
         Parameters
@@ -16,4 +16,4 @@ class SelectionMenu(cmd2.Cmd):
         """
         cmd2.Cmd.__init__(self)
 
-        self._title = title
+        self._title = title.center(30, "~")
