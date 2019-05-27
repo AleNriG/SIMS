@@ -39,5 +39,5 @@ class SelectionMenu(cmd2.Cmd):
             chosen_command = self.select(commands)
             if chosen_command == "Back":
                 break
-            self.chosen_program = commands.index(chosen_command)
-            programs[self.chosen_program]()
+            chosen_program = commands.index(chosen_command)
+            programs[chosen_program]()
