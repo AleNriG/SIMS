@@ -9,9 +9,10 @@ Description: Program for easing work with Secondary Ion Mass Spectrometry data.
 """
 import os
 
+import calculator
 import cmd2
-from modules import depth
 from modules import db
+from modules import depth
 from modules import file_read
 from modules import manual_input
 from modules import minor
@@ -29,31 +30,19 @@ class Main(cmd2.Cmd):
     def __init__(self):
         super().__init__()
 
+    def do_calculator(self, _):
+        """Helpful Calculator
+
+        Returns
+        -------
+        TODO
+
+        """
+        calculator.Calculator()
+
     def do_clear(self, _):
         """Clear the terminal screen"""
         os.system("clear")
-
-    def do_RSF(self, _):
-        """Calculate RSF"""
-        dose = manual_input.read_float(message="Input dose: ")
-        integer = manual_input.read_float(message="Input integration result: ")
-        try:
-            result = minor.rsf(dose=dose, integer=integer)
-            print("result = {:.2e}".format(result))
-        except Exception as e:
-            print("{}".format(e))
-
-    def do_HMR(self, _):
-        """Calculate HMR"""
-        mass_1 = manual_input.read_eval(message="Input expression for the first mass: ")
-        mass_2 = manual_input.read_eval(
-            message="Input expression for the second mass: "
-        )
-        try:
-            result = minor.hmr(mass_1, mass_2)
-            print("result = {}".format(int(result)))
-        except Exception as e:
-            print("{}".format(e))
 
     @cmd2.with_argument_list
     def do_open(self, args):
