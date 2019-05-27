@@ -1,4 +1,3 @@
-from typing import Callable
 from typing import List
 
 import cmd2
@@ -20,7 +19,7 @@ class SelectionMenu(cmd2.Cmd):
 
         self._title = title.center(30, "~")
 
-    def _selection_menu_loop(self, commands: List[str], programs: List[Callable]):
+    def _selection_menu_loop(self, commands: List[str]):
         """Start selection loop.
 
         Parameters
@@ -33,10 +32,10 @@ class SelectionMenu(cmd2.Cmd):
         Call of chosen program
 
         """
+        commands.append("Back")
         while True:
             self.poutput(self._title)
             chosen_command = self.select(commands)
             if chosen_command == "Back":
                 break
-            chosen_program = commands.index(chosen_command)
-            programs[chosen_program]()
+            self.chosen_program = commands.index(chosen_command)
