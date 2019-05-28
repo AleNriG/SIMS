@@ -10,10 +10,9 @@ class Calculator(selection_menu.SelectionMenu):
     def __init__(self):
         title = self.__doc__
         self.programs = [self._rsf, self._hmr]
-        self.commands = [i.__doc__ for i in self.programs]
 
         selection_menu.SelectionMenu.__init__(self, title=title)
-        self._selection_menu_loop(self.commands, self.programs)
+        self._selection_menu_loop(self.programs)
 
     def _rsf(self):
         """Calculate RSF"""

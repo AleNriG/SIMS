@@ -20,7 +20,7 @@ class SelectionMenu(cmd2.Cmd):
 
         self._title = title.center(30, "~")
 
-    def _selection_menu_loop(self, commands: List[str], programs: List[Callable]):
+    def _selection_menu_loop(self, programs: List[Callable]):
         """Start selection loop.
 
         Parameters
@@ -33,6 +33,7 @@ class SelectionMenu(cmd2.Cmd):
         Call of chosen program
 
         """
+        commands = [i.__doc__ for i in programs]
         commands.append("Back")
         while True:
             self.poutput(self._title)
