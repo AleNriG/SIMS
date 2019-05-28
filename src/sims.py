@@ -11,6 +11,7 @@ import os
 
 import calculator
 import cmd2
+import plot_settings
 from modules import db
 from modules import depth
 from modules import file_read
@@ -100,12 +101,8 @@ class Main(cmd2.Cmd):
             print(f"{e}")
 
     def do_plot_settings(self, _):
-        """Set up plot settings"""
-        x = self.select("Time Depth", "Choose x: ")
-        try:
-            self.datafile.x = x
-        except Exception as e:
-            print(f"{e}")
+        """Plot Settings"""
+        plot_settings.PlotSetup(self.datafile)
 
 
 if __name__ == "__main__":
