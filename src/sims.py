@@ -88,7 +88,7 @@ class Main(cmd2.Cmd):
         :returns: TODO
 
         """
-        matrix = self.select(self.datafile.y, "Select matrix: ")
+        matrix = self.select(self.datafile.ions, "Select matrix: ")
         self.datafile.set_matrix(matrix)
         impurity = self.select(self.datafile.impurities, "Select impurity: ")
         ia = db.get_ia(impurity)
