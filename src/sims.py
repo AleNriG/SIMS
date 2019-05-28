@@ -20,16 +20,21 @@ from modules import minor
 
 class Main(cmd2.Cmd):
 
-    """Main CLI class"""
+    """Main CLI class """
 
     prompt = ">>> "
     intro = "Welcome to SIMS! Type ? to list commands."
+
+    CMD_CAT_GRAPH = "Graph"
+    CMD_CAT_DATA = "Work with data"
+    CMD_CAT_MATHEMATICA = "Mathematica"
 
     default_to_shell = True
 
     def __init__(self):
         super().__init__()
 
+    @cmd2.with_category(CMD_CAT_MATHEMATICA)
     def do_calculator(self, _):
         """Helpful Calculator
 
@@ -44,6 +49,7 @@ class Main(cmd2.Cmd):
         """Clear the terminal screen"""
         os.system("clear")
 
+    @cmd2.with_category(CMD_CAT_DATA)
     @cmd2.with_argument_list
     def do_open(self, args):
         """Open file"""
@@ -55,6 +61,7 @@ class Main(cmd2.Cmd):
 
     complete_open = cmd2.Cmd.path_complete
 
+    @cmd2.with_category(CMD_CAT_DATA)
     def do_data(self, _):
         """Print current datafile"""
         try:
@@ -62,6 +69,7 @@ class Main(cmd2.Cmd):
         except Exception:
             print("Data file is not loaded")
 
+    @cmd2.with_category(CMD_CAT_DATA)
     def do_depth(self, _):
         """Calculate depth"""
         try:
@@ -71,6 +79,7 @@ class Main(cmd2.Cmd):
         except Exception as e:
             print("{}".format(e))
 
+    @cmd2.with_category(CMD_CAT_DATA)
     def do_concentration(self, _):
         """TODO: Docstring for do_concentration.
 
@@ -92,6 +101,7 @@ class Main(cmd2.Cmd):
         except Exception as e:
             print(f"{e}")
 
+    @cmd2.with_category(CMD_CAT_GRAPH)
     def do_plot(self, _):
         """Plot points from datafile"""
         try:
@@ -99,6 +109,7 @@ class Main(cmd2.Cmd):
         except Exception as e:
             print(f"{e}")
 
+    @cmd2.with_category(CMD_CAT_GRAPH)
     def do_plot_settings(self, _):
         """Set up plot settings"""
         x = self.select("Time Depth", "Choose x: ")
