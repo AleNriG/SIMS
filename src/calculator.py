@@ -1,9 +1,9 @@
 from modules import manual_input
 from modules import minor
-from selection_menu import SelectionMenu
+from modules import selection_menu
 
 
-class Calculator(SelectionMenu):
+class Calculator(selection_menu.SelectionMenu):
 
     """Helpful Calculator"""
 
@@ -12,7 +12,7 @@ class Calculator(SelectionMenu):
         self.programs = [self._rsf, self._hmr]
         self.commands = [i.__doc__ for i in self.programs]
 
-        SelectionMenu.__init__(self, title=title)
+        selection_menu.SelectionMenu.__init__(self, title=title)
         self._selection_menu_loop(self.commands, self.programs)
 
     def _rsf(self):
