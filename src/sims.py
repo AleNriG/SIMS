@@ -9,9 +9,9 @@ Description: Program for easing work with Secondary Ion Mass Spectrometry data.
 """
 import os
 
-import calculator
 import cmd2
-import plot_settings
+from cli import calculator
+from cli import plot_settings
 from modules import db
 from modules import depth
 from modules import file_read

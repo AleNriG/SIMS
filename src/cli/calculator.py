@@ -1,6 +1,7 @@
 from modules import manual_input
 from modules import minor
-from modules import selection_menu
+
+from . import selection_menu
 
 
 class Calculator(selection_menu.SelectionMenu):
