@@ -11,7 +11,7 @@ class Data:
 
     """
 
-    def __init__(self, name: str, points: pandas.DataFrame):
+    def __init__(self, name: str, points: pandas.DataFrame) -> None:
         """Initialize filename, datapoints of measurement,
         absciss and ordinate for future plotting.
 
@@ -25,33 +25,33 @@ class Data:
         self.x = "Time"
         """If add new ordinate points (for example Depth), it will be plotted
         on the plot as absciss value. To fix that, all absciss have their own list."""
-        self.y = [
+        self.ions = [
             header for header in list(self.points.columns) if header is not self.x
         ]
 
-    def _plot_init(self):
+    def _plot_init(self) -> None:
         """Initializationi and Reinitilization of pyplot figure."""
         self.figure = self.points.plot(
-            x=self.x, y=self.y, title=self.name, grid=True, logy=True
+            x=self.x, y=self.ions, title=self.name, grid=True, logy=True
         )
         self.figure.set(xlabel=self.x, ylabel="Intencity")
 
-    def __str__(self):
+    def __str__(self) -> str:
         border = "*".center(50, "*")
         info = "{0}\nFilename: {1}\n{0}\n{2}".format(border, self.name, self.points)
 
         return info
 
-    def set_matrix(self, element):
+    def set_matrix(self, element: str) -> None:
         """TODO: Docstring for set_matrix.
 
         :element: TODO
 
         """
         self.matrix = element
-        self.impurities = [i for i in self.y if i is not self.matrix]
+        self.impurities = [i for i in self.ions if i is not self.matrix]
 
-    def plot(self):
+    def plot(self) -> None:
         """Plot figure."""
         self._plot_init()
         plt.show()
