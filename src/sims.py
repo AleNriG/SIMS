@@ -12,11 +12,9 @@ import os
 import cmd2
 from cli import calculator
 from cli import plot_settings
-from modules import db
+from modules import concentration
 from modules import depth
 from modules import file_read
-from modules import manual_input
-from modules import minor
 
 DATA_NOT_LOADED_MSG = "There is no opened data"
 
@@ -79,15 +77,12 @@ class Main(cmd2.Cmd):
     @cmd2.with_category(DATA_GROUP)
     def do_concentration(self, _):
         """Calculate atomic concentration of an element"""
-        matrix = self.select(self.datafile.ions, "Select matrix: ")
-        self.datafile.set_matrix(matrix)
-        impurity = self.select(self.datafile.impurities, "Select impurity: ")
-        ia = db.get_ia(impurity)
-        rsf = manual_input.read_float(message="Input RSF: ")
-        element = db._strip_ion(impurity)
         try:
-            result = minor.concentration(
-                self.datafile.points[impurity], ia, self.datafile.points[matrix], rsf
+            matrix = self.select(self.datafile.ions, "Select matrix: ")
+            self.datafile.set_matrix(matrix)
+            impurity = self.select(self.datafile.impurities, "Select impurity: ")
+            element, result = concentration.set_arguments_and_calculate(
+                self.datafile, impurity, matrix
             )
             self.datafile.points[element] = result
         except AttributeError:
