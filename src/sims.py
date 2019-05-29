@@ -57,6 +57,15 @@ class Main(cmd2.Cmd):
     complete_open = cmd2.Cmd.path_complete
 
     @cmd2.with_category(DATA_GROUP)
+    @cmd2.with_argument_list
+    def do_save(self, args):
+        """Save data to a file"""
+        if not args:
+            self.perror("You must specify the file path!")
+            return
+        pass
+
+    @cmd2.with_category(DATA_GROUP)
     def do_data(self, _):
         """Print current datafile"""
         try:
