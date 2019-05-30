@@ -61,10 +61,11 @@ class Main(cmd2.Cmd):
     @cmd2.with_argument_list
     def do_save(self, args):
         """Save data to a file"""
-        if not args:
-            save_data.save(".", self.datafile)
         try:
-            save_data.save(args[0], self.datafile)
+            if not args:
+                save_data.save(".", self.datafile)
+            else:
+                save_data.save(args[0], self.datafile)
         except AttributeError:
             print(DATA_NOT_LOADED_MSG)
 
