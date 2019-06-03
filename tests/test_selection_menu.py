@@ -1,4 +1,4 @@
-from src import selection_menu
+from src.cli import selection_menu
 
 
 class TestSelectionMenu:
