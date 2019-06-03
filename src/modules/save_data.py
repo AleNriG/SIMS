@@ -20,3 +20,5 @@ def save(path: str, datafile: data.Data):
             path_or_buf=os.path.abspath(path) + "/" + datafile.name + ".csv",
             index=False,
         )
+    else:
+        datafile.points.to_csv(path_or_buf=os.path.abspath(path) + ".csv", index=False)
