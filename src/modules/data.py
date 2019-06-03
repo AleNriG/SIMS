@@ -21,7 +21,6 @@ class Data:
         """
         self.name = name
         self.points = points
-        self._output_format = ".csv"
 
         self.x = "Time"
         """If add new ordinate points (for example Depth), it will be plotted
@@ -42,22 +41,6 @@ class Data:
         info = "{0}\nFilename: {1}\n{0}\n{2}".format(border, self.name, self.points)
 
         return info
-
-    def set_output_format(self, output_format: str):
-        """TODO: Docstring for set_output_format.
-
-        Parameters
-        ----------
-        output_format : TODO
-
-        Returns
-        -------
-        TODO
-
-        """
-        avaliable_formats = {".csv"}
-        assert output_format in avaliable_formats, "Choosing format is unsupported!"
-        self._output_format = output_format
 
     def set_matrix(self, element: str) -> None:
         """TODO: Docstring for set_matrix.
