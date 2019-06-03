@@ -15,6 +15,7 @@ from cli import plot_settings
 from modules import concentration
 from modules import depth
 from modules import file_read
+from modules import save_data
 
 DATA_NOT_LOADED_MSG = "There is no opened data"
 
@@ -55,6 +56,20 @@ class Main(cmd2.Cmd):
         print(self.datafile)
 
     complete_open = cmd2.Cmd.path_complete
+
+    @cmd2.with_category(DATA_GROUP)
+    @cmd2.with_argument_list
+    def do_save(self, args):
+        """Save data to a file"""
+        try:
+            if not args:
+                save_data.save(".", self.datafile)
+            else:
+                save_data.save(args[0], self.datafile)
+        except AttributeError:
+            print(DATA_NOT_LOADED_MSG)
+
+    complete_save = cmd2.Cmd.path_complete
 
     @cmd2.with_category(DATA_GROUP)
     def do_data(self, _):
