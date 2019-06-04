@@ -52,4 +52,4 @@ def calculate(
     assert len(impurity) == len(
         matrix
     ), "Impurity and matrix lists must be the same length!"
-    return [i / ia / m * rsf for i, m in zip(impurity, matrix)]
+    return [i / ia / 100 / m * rsf for i, m in zip(impurity, matrix)]
