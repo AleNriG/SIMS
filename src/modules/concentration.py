@@ -1,4 +1,5 @@
 from typing import List
+from typing import Optional
 from typing import Tuple
 
 from . import data
@@ -7,7 +8,7 @@ from . import manual_input
 
 
 def set_arguments_and_calculate(
-    datafile: data.Data, impurity: str, matrix: str
+    datafile: data.Data, impurity: str, matrix: str, ia: Optional[float] = None
 ) -> Tuple[str, List[float]]:
     """Calculate atomic concentration of impurity.
     API for manual parameters setting.
@@ -22,7 +23,9 @@ def set_arguments_and_calculate(
     List of points of element atomic concentration [cm^{-3}]
 
     """
-    ia = db.get_ia(impurity)
+    if ia is None:
+        ia = db.get_ia(impurity)
+
     element = db._strip_ion(impurity)
 
     rsf = manual_input.read_float(message="Input RSF: ")
