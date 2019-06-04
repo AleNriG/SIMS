@@ -10,11 +10,11 @@ class TestConcentration:
     @pytest.mark.randomize(
         impurities=list_of(float, items=100), matrix=list_of(float, items=100)
     )
-    def test_random(self, impurities, matrix):
+    def test_calculate(self, impurities, matrix):
         ia = random.random()
         rsf = random.uniform(1e15, 1e25)
         assert concentration.calculate(impurities, ia, matrix, rsf) == [
-            i / ia / m * rsf for i, m in zip(impurities, matrix)
+            i / ia / 100 / m * rsf for i, m in zip(impurities, matrix)
         ]
 
     @pytest.mark.randomize(
