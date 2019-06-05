@@ -10,9 +10,9 @@ Description: Program for easing work with Secondary Ion Mass Spectrometry data.
 import os
 
 import cmd2
+from cli import calc_concentration
 from cli import calculator
 from cli import plot_settings
-from modules import concentration
 from modules import depth
 from modules import file_read
 from modules import save_data
@@ -93,13 +93,7 @@ class Main(cmd2.Cmd):
     def do_concentration(self, _):
         """Calculate atomic concentration of an element"""
         try:
-            matrix = self.select(self.datafile.ions, "Select matrix: ")
-            self.datafile.set_matrix(matrix)
-            impurity = self.select(self.datafile.impurities, "Select impurity: ")
-            element, result = concentration.set_arguments_and_calculate(
-                self.datafile, impurity, matrix
-            )
-            self.datafile.points[element] = result
+            calc_concentration.CalculateConcentration(self.datafile)
         except AttributeError:
             print(DATA_NOT_LOADED_MSG)
 
