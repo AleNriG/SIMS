@@ -3,7 +3,7 @@ from typing import List
 
 import numpy
 
-from . import manual_input
+from ..io import manual_input
 
 
 def set_arguments_and_calculate(time: List[float]) -> List[float]:
