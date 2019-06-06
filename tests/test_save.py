@@ -2,8 +2,8 @@ import csv
 import os
 from typing import List
 
-from src.modules import file_read
-from src.modules import save_data
+from src.lib.io import file_read
+from src.lib.io import save_data
 
 TEST_INPUT_FILE = os.path.join(os.path.dirname(__file__), "files/full_file.dp_rpc_asc")
 CORRECT_OUTPUT_FILE = os.path.join(os.path.dirname(__file__), "files/test_output.csv")
