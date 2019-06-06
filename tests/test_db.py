@@ -3,7 +3,7 @@ import os
 
 import pytest
 
-from src.modules import db
+from src.lib.db import db
 
 
 test_database = os.path.join(os.path.dirname(__file__), "files/test_ions_db.csv")
