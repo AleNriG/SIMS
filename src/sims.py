@@ -13,9 +13,9 @@ import cmd2
 from cli import calc_concentration
 from cli import calculator
 from cli import plot_settings
-from modules import depth
-from modules import file_read
-from modules import save_data
+from lib.math import depth
+from lib.io import file_read
+from lib.io import save_data
 
 DATA_NOT_LOADED_MSG = "There is no opened data"
 
