@@ -2,9 +2,9 @@ from typing import List
 from typing import Optional
 from typing import Tuple
 
-from . import data
-from . import db
-from . import manual_input
+from .. import data
+from ..db import db
+from ..io import manual_input
 
 
 def set_arguments_and_calculate(
