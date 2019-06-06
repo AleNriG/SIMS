@@ -10,12 +10,12 @@ Description: Program for easing work with Secondary Ion Mass Spectrometry data.
 import os
 
 import cmd2
-from cli import calc_concentration
 from cli import calculator
+from cli import concentration
 from cli import plot_settings
-from lib.math import depth
 from lib.io import file_read
 from lib.io import save_data
+from lib.math import depth
 
 DATA_NOT_LOADED_MSG = "There is no opened data"
 
@@ -93,7 +93,7 @@ class Main(cmd2.Cmd):
     def do_concentration(self, _):
         """Calculate atomic concentration of an element"""
         try:
-            calc_concentration.CalculateConcentration(self.datafile)
+            concentration.CalculateConcentration(self.datafile)
         except AttributeError:
             print(DATA_NOT_LOADED_MSG)
 
