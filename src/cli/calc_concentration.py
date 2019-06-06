@@ -1,7 +1,7 @@
 import cmd2
-from modules import concentration
-from modules import data
-from modules import manual_input
+from lib import data
+from lib.io import manual_input
+from lib.math import concentration
 
 
 class CalculateConcentration(cmd2.Cmd):
