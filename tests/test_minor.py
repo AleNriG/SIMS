@@ -1,6 +1,6 @@
 import pytest
 
-from src.modules import minor
+from src.lib.math import minor
 
 
 @pytest.mark.randomize(dose=float, integer=float, positive=True)
