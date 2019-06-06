@@ -1,5 +1,5 @@
-from modules import manual_input
-from modules import minor
+from lib.io import manual_input
+from lib.math import minor
 
 from . import selection_menu
 
