@@ -3,10 +3,9 @@ from typing import List
 from typing import Tuple
 
 import cmd2
-
-from ..lib import data
-from ..lib.io import manual_input
-from ..lib.math import depth
+from lib import data
+from lib.io import manual_input
+from lib.math import depth
 
 
 class DepthCalculation(cmd2.Cmd):
@@ -40,7 +39,7 @@ class DepthCalculation(cmd2.Cmd):
         if layers == 1:
             arguments = self._set_args_for_homostructure()
         else:
-            arguments = self._set_args_to_heterostructure()
+            arguments = self._set_args_to_heterostructure(layers)
         return arguments
 
     def _set_args_for_homostructure(self) -> Tuple[float, None]:
@@ -74,7 +73,7 @@ class DepthCalculation(cmd2.Cmd):
             layers, values_type="float", message="Input speed of the layer: "
         )
         indexes = self._get_list_of_values(
-            layers, values_type="int", message="Input speed of the layer: "
+            layers, values_type="int", message="Input index of layer changing: "
         )
         return speed, indexes
 
