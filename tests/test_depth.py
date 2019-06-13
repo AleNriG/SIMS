@@ -1,6 +1,6 @@
 import pytest
 
-from src.modules import depth
+from src.lib.math import depth
 
 TIME = [0.3 * i for i in range(101)]
 

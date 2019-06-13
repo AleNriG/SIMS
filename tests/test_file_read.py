@@ -1,6 +1,6 @@
 import os
 
-from src.modules import file_read
+from src.lib.io import file_read
 
 
 def reader(filename):

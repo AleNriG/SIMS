@@ -11,11 +11,11 @@ import os
 
 import cmd2
 from cli import calculator
+from cli import concentration
+from cli import depth
 from cli import plot_settings
-from modules import concentration
-from modules import depth
-from modules import file_read
-from modules import save_data
+from lib.io import file_read
+from lib.io import save_data
 
 DATA_NOT_LOADED_MSG = "There is no opened data"
 
@@ -52,8 +52,8 @@ class Main(cmd2.Cmd):
         if not args:
             self.perror("You must specify the file path!")
             return
-        self.datafile = file_read.asc(args[0])
-        print(self.datafile)
+        self._datafile = file_read.asc(args[0])
+        print(self._datafile)
 
     complete_open = cmd2.Cmd.path_complete
 
@@ -63,9 +63,9 @@ class Main(cmd2.Cmd):
         """Save data to a file"""
         try:
             if not args:
-                save_data.save(".", self.datafile)
+                save_data.save(".", self._datafile)
             else:
-                save_data.save(args[0], self.datafile)
+                save_data.save(args[0], self._datafile)
         except AttributeError:
             print(DATA_NOT_LOADED_MSG)
 
@@ -75,7 +75,7 @@ class Main(cmd2.Cmd):
     def do_data(self, _):
         """Print current datafile"""
         try:
-            print(self.datafile)
+            print(self._datafile)
         except AttributeError:
             print(DATA_NOT_LOADED_MSG)
 
@@ -83,9 +83,7 @@ class Main(cmd2.Cmd):
     def do_depth(self, _):
         """Calculate depth"""
         try:
-            self.datafile.points["Depth"] = depth.set_arguments_and_calculate(
-                self.datafile.points["Time"]
-            )
+            depth.DepthCalculation(self._datafile)
         except AttributeError:
             print(DATA_NOT_LOADED_MSG)
 
@@ -93,13 +91,7 @@ class Main(cmd2.Cmd):
     def do_concentration(self, _):
         """Calculate atomic concentration of an element"""
         try:
-            matrix = self.select(self.datafile.ions, "Select matrix: ")
-            self.datafile.set_matrix(matrix)
-            impurity = self.select(self.datafile.impurities, "Select impurity: ")
-            element, result = concentration.set_arguments_and_calculate(
-                self.datafile, impurity, matrix
-            )
-            self.datafile.points[element] = result
+            concentration.CalculateConcentration(self._datafile)
         except AttributeError:
             print(DATA_NOT_LOADED_MSG)
 
@@ -107,14 +99,14 @@ class Main(cmd2.Cmd):
     def do_plot(self, _):
         """Plot points from datafile"""
         try:
-            self.datafile.plot()
+            self._datafile.plot()
         except AttributeError:
             print(DATA_NOT_LOADED_MSG)
 
     @cmd2.with_category(GRAPH_GROUP)
     def do_plot_settings(self, _):
         """Plot Settings"""
-        plot_settings.PlotSetup(self.datafile)
+        plot_settings.PlotSetup(self._datafile)
 
 
 if __name__ == "__main__":

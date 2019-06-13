@@ -1,4 +1,4 @@
-from modules import data
+from lib import data
 
 from . import selection_menu
 

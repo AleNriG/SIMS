@@ -1,9 +1,15 @@
+import os
 import random
 
 import pytest
 from pytest import list_of
 
-from src.modules import concentration
+from src.lib.math import concentration
+from src.lib.io import file_read
+
+TEST_DATAFILE = file_read.asc(
+    os.path.join(os.path.dirname(__file__), "files/full_file.dp_rpc_asc")
+)
 
 
 class TestConcentration:
