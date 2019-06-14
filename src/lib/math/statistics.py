@@ -17,3 +17,19 @@ def mean(values: List[float]) -> float:
     """
     result = numpy.mean(values)
     return result
+
+
+def std(values: List[float]) -> float:
+    """Calculate the standard deviation
+
+    Parameters
+    ----------
+    values : list of values for mean calculation
+
+    Returns
+    -------
+    Standard deviation
+
+    """
+    result = numpy.std(values)
+    return result
