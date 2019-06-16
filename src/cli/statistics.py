@@ -26,10 +26,7 @@ class Statistics(cmd2.Cmd):
 
         self._datafile = datafile
 
-        column: str = self.select(
-            self._datafile.ions, "Select column for statistics calculation: "
-        )
-
+        column = self._select_column()
         rng = self._set_range(column)
         mean, std = self._calculate(self._datafile.points[column])
         formatted_mean, formatted_std = self._format(mean, std)
@@ -37,6 +34,19 @@ class Statistics(cmd2.Cmd):
 
         table = self._create_table(Statistics.HEADER, row)
         self.poutput(table)
+
+    def _select_column(self) -> str:
+        """TODO: Docstring for _select_column.
+        Returns
+        -------
+        TODO
+
+        """
+        column: str = self.select(
+            list(self._datafile.points.columns),
+            "Select column for statistics calculation: ",
+        )
+        return column
 
     def _calculate(self, values: List[float]) -> Tuple[float, float]:
         """TODO: Docstring for _calculate.
