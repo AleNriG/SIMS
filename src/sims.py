@@ -14,6 +14,7 @@ from cli import calculator
 from cli import concentration
 from cli import depth
 from cli import plot_settings
+from cli import statistics
 from lib.io import file_read
 from lib.io import save_data
 
@@ -107,6 +108,14 @@ class Main(cmd2.Cmd):
     def do_plot_settings(self, _):
         """Plot Settings"""
         plot_settings.PlotSetup(self._datafile)
+
+    @cmd2.with_category(DATA_GROUP)
+    def do_statistics(self, _):
+        """Show the statistics for column"""
+        try:
+            statistics.Statistics(self._datafile)
+        except AttributeError:
+            print(DATA_NOT_LOADED_MSG)
 
 
 if __name__ == "__main__":
