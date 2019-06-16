@@ -25,6 +25,7 @@ matplotlib = "==3.0.2"
 cmd2 = "*"
 gnureadline = "*"
 pyqt5 = "*"
+tableformatter = "*"
 
 [requires]
 python_version = "3.7"
