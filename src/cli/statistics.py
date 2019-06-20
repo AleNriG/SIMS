@@ -84,9 +84,28 @@ class Statistics(cmd2.Cmd):
         TODO
 
         """
-        # TODO: manual input range for statistics
-        rng_end = len(self._datafile.points[column]) - 1  # due to count from 0
-        return f"0:{rng_end}"
+        # TODO: func return numbers, not string
+        str_range = input("Input range (a:b) [default full list]: ")
+        if not str_range:
+            rng_end = len(self._datafile.points[column]) - 1  # due to count from 0
+            return f"0:{rng_end}"
+
+        rng_start, rng_end = self._split_str(str_range)
+        return f"{rng_start}:{rng_end}"
+
+    def _split_str(self, string: str) -> Generator[int, None, None]:
+        """TODO: Docstring for _split_str.
+
+        Parameters
+        ----------
+        string : TODO
+
+        Returns
+        -------
+        TODO
+
+        """
+        return (int(i) for i in string.split(":"))
 
     def _create_table(
         self, columns: List[str], row: List[Tuple[str, str, str, str]]
