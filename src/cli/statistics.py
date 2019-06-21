@@ -15,31 +15,41 @@ class Statistics(cmd2.Cmd):
     HEADER = ["Column", "Range", "Mean", "Std"]
 
     def __init__(self, datafile: data.Data) -> None:
-        """TODO: to be defined1.
-
-        Parameters
-        ----------
-        datafile : TODO
-
-        """
         cmd2.Cmd.__init__(self)
 
         self._datafile = datafile
 
+        self._exec()
+
+    def _exec(self):
+        """Execute statistics calculation
+
+        Returns
+        -------
+        Prints table with selected column, range of calculation, mean and std.
+
+        """
         column = self._select_column()
-        rng = self._set_range(column)
-        mean, std = self._calculate(self._datafile.points[column])
-        formatted_mean, formatted_std = self._format(mean, std)
-        row = [(column, rng, formatted_mean, formatted_std)]
+
+        rng_start, rng_end = self._set_range(column)
+        str_rng = self._format_range(rng_start, rng_end)
+
+        # +1 to include last point in calculations
+        mean, std = self._calculate(
+            self._datafile.points[column][rng_start : rng_end + 1]
+        )
+
+        row = [(column, str_rng, mean, std)]
 
         table = self._create_table(Statistics.HEADER, row)
         self.poutput(table)
 
     def _select_column(self) -> str:
-        """TODO: Docstring for _select_column.
+        """Select column in data for statistics calculation
+
         Returns
         -------
-        TODO
+        String of selected column name.
 
         """
         column: str = self.select(
@@ -48,64 +58,71 @@ class Statistics(cmd2.Cmd):
         )
         return column
 
-    def _calculate(self, values: List[float]) -> Tuple[float, float]:
-        """TODO: Docstring for _calculate.
-
-        Parameters
-        ----------
-        values : TODO
+    def _set_range(self, column: str) -> Tuple[int, int]:
+        """Set range for statistics calculations
 
         Returns
         -------
-        TODO
+        Column indexes of the beginning and the ending of statistics calculations.
 
         """
-        result = statistics.mean(values), statistics.std(values)
-        return result
+        str_range = input("Input range (a:b) [default full list]: ")
 
-    def _format(self, *args: float) -> Generator[str, None, None]:
+        if not str_range:
+            rng_start = 0
+            rng_end = len(self._datafile.points[column]) - 1  # due to count from 0
+            return rng_start, rng_end
+
+        rng_start, rng_end = self._split_str(str_range)
+        return rng_start, rng_end
+
+    def _format_range(self, rng_start: int, rng_end: int) -> str:
+        """Format range values to a string with type 'start:end'
+
+        Parameters
+        ----------
+        rng_start : first range point
+        rng_end : last range point
+
+        Returns
+        -------
+        String formatted to 'start:end'
+
+        """
+        return f"{rng_start}:{rng_end}"
+
+    def _split_str(self, string: str) -> Generator[int, None, None]:
+        return (int(i) for i in string.split(":"))
+
+    def _calculate(self, values: List[float]) -> Tuple[str, str]:
+        """Calculate mean and std
+
+        Parameters
+        ----------
+        values : list of values of selected column in selected range
+
+        Returns
+        -------
+        Mean and std
+
+        """
+        raw_mean, raw_std = statistics.mean(values), statistics.std(values)
+        mean, std = self._format_calculations(raw_mean, raw_std)
+        return mean, std
+
+    def _format_calculations(self, *args: float) -> Generator[str, None, None]:
         """Format float values to the nice output
 
         Parameters
         ----------
-        args : TODO
+        args : values after statistics calculations
 
         Returns
         -------
-        TODO
+        Rounded to two numbers after dot in scientific style strings
 
         """
         return (f"{arg:.2e}" for arg in args)
-
-    def _set_range(self, column: str) -> str:
-        """TODO: Docstring for _set_range.
-        Returns
-        -------
-        TODO
-
-        """
-        # TODO: func return numbers, not string
-        str_range = input("Input range (a:b) [default full list]: ")
-        if not str_range:
-            rng_end = len(self._datafile.points[column]) - 1  # due to count from 0
-            return f"0:{rng_end}"
-
-        rng_start, rng_end = self._split_str(str_range)
-        return f"{rng_start}:{rng_end}"
-
-    def _split_str(self, string: str) -> Generator[int, None, None]:
-        """TODO: Docstring for _split_str.
-
-        Parameters
-        ----------
-        string : TODO
-
-        Returns
-        -------
-        TODO
-
-        """
-        return (int(i) for i in string.split(":"))
 
     def _create_table(
         self, columns: List[str], row: List[Tuple[str, str, str, str]]
