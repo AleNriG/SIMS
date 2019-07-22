@@ -1,12 +1,7 @@
-cache:
-  paths:
-    - .venv
-
 stages:
   - info
   - build
   - test
-
 
 info:
   stage: info
@@ -15,9 +10,6 @@ info:
 
 build:
   stage: build
-  before_script:
-    - find src -name '*cache*' -exec rm -rf {} \;
-    - find tests -name '*cache*' -exec rm -rf {} \;
   script:
     - sudo docker build -f Dockerfile.test --force-rm -t pytest .
 
