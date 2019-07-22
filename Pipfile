@@ -12,7 +12,6 @@ pytest-cov = "*"
 pytest-quickcheck = "*"
 pytest-mpl = "*"
 pytest-random-order = "*"
-sphinx = "*"
 
 [packages]
 numpy = "==1.15.4"
