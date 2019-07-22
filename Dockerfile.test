@@ -4,7 +4,7 @@ WORKDIR /app
 COPY Pipfile* ./
 
 RUN apt-get update && python -m pip install pipenv \
-    && pipenv install --dev --system && apt-get clean
+&& python -m pipenv install --dev --system && apt-get clean
 
 COPY . .
 ENTRYPOINT ["pytest"]
