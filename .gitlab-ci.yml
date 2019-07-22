@@ -18,6 +18,7 @@ build:
   before_script:
     - find src -name '*cache*' -exec rm -rf {} \;
     - find tests -name '*cache*' -exec rm -rf {} \;
+    - pipenv lock --requirements > requirements.txt
   script:
     - sudo docker build -f Dockerfile.test --force-rm -t pytest .
 
