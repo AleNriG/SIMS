@@ -15,11 +15,11 @@ class Statistics(cmd2.Cmd):
     HEADER = ["Column", "Range", "Mean", "Std"]
 
     def __init__(self, datafile: data.Data) -> None:
-        """TODO: to be defined1.
+        """Constructor for Statistics
 
         Parameters
         ----------
-        datafile : TODO
+        datafile : currently selected datafile
 
         """
         cmd2.Cmd.__init__(self)
@@ -36,12 +36,6 @@ class Statistics(cmd2.Cmd):
         self.poutput(table)
 
     def _select_column(self) -> str:
-        """TODO: Docstring for _select_column.
-        Returns
-        -------
-        TODO
-
-        """
         column: str = self.select(
             list(self._datafile.points.columns),
             "Select column for statistics calculation: ",
