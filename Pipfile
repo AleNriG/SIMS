@@ -4,10 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-pre-commit = "*"
-black = "==19.3b0"
 flake8 = "*"
-pycodestyle = "*"
 mypy = "*"
 pytest = "==3.7.1"
 pluggy = "==0.7.1"
@@ -15,7 +12,6 @@ pytest-cov = "*"
 pytest-quickcheck = "*"
 pytest-mpl = "*"
 pytest-random-order = "*"
-sphinx = "*"
 
 [packages]
 numpy = "==1.15.4"
